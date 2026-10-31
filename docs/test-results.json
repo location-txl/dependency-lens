@@ -1,0 +1,36 @@
+{
+  "jvm": {
+    "TEST-dev.dependencylens.DependencyGraphFunctionalTest": {
+      "tests": 10,
+      "failures": 0,
+      "errors": 0
+    },
+    "TEST-dev.dependencylens.ReportTest": {
+      "tests": 4,
+      "failures": 0,
+      "errors": 0
+    }
+  },
+  "frontend": {
+    "tests": 9,
+    "passed": 9,
+    "failed": 0
+  },
+  "bytecodeMajor": 55,
+  "localMaven": {
+    "groovyDsl": "passed",
+    "kotlinDslPluginMarker": "passed",
+    "customOutput": "passed"
+  },
+  "browser": {
+    "engine": "Codex in-app Chromium",
+    "mode": "loopback HTTP",
+    "consoleErrors": 0,
+    "stressNodes": 10001,
+    "stressEdges": 19999,
+    "treeInitialRows": 500,
+    "pathInitialNodes": 200,
+    "pathExpandedNodes": 400
+  },
+  "pluginSha256": "4f8e9104471348793d921f29ea463728434e80539afc2bbe367c273ea4a9594c"
+}

@@ -1,0 +1,44 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. See https://docs.gradle.org/7.0.2/userguide/gradle_daemon.html#sec:disabling_the_daemon.
+Daemon will be stopped at the end of the build
+
+> Task :frontendTest
+✔ shared nodes keep every incoming request and constraints do not become introduction paths (0.872708ms)
+✔ search and change filter retain all ordinary ancestors (0.168041ms)
+✔ paths merge a diamond, expose children and omit constraint edges (0.422666ms)
+✔ expanding descendants never pulls unrelated children of ancestors into the path view (0.081792ms)
+✔ tree repeats shared dependencies by path but terminates cycles (0.139375ms)
+✔ direct classification wins over transitive and selected variants share component statistics (0.05425ms)
+✔ dynamic and managed version requests are not counted as version conflicts (0.059083ms)
+✔ a 10,000-node graph is indexed and traversed without enumerating complete paths (26.094958ms)
+✔ tree iterator can stop before materializing a large shared graph (0.447375ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 80.634208
+
+> Task :compileJava
+> Task :pluginDescriptors UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes
+> Task :pluginUnderTestMetadata
+> Task :compileTestJava
+> Task :processTestResources NO-SOURCE
+> Task :testClasses
+> Task :test
+> Task :validatePlugins
+> Task :check
+> Task :jar
+> Task :generatePomFileForDependencyLensPluginMarkerMavenPublication
+> Task :publishDependencyLensPluginMarkerMavenPublicationToMavenLocal
+> Task :sourcesJar
+> Task :generateMetadataFileForPluginMavenPublication
+> Task :generatePomFileForPluginMavenPublication
+> Task :publishPluginMavenPublicationToMavenLocal
+> Task :publishToMavenLocal
+
+BUILD SUCCESSFUL in 8s
+15 actionable tasks: 13 executed, 2 up-to-date

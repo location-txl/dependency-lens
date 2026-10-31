@@ -1,0 +1,1 @@
+<project><modelVersion>4.0.0</modelVersion><groupId>lens.fixture</groupId><artifactId>first</artifactId><version>1.0</version><dependencies><dependency><groupId>lens.fixture</groupId><artifactId>shared</artifactId><version>1.0</version></dependency></dependencies></project>

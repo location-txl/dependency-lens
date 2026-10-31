@@ -1,0 +1,5 @@
+* text=auto
+*.bat text eol=crlf
+
+# Reports embed vendor scripts; keep their generated whitespace intact.
+reports/*.html -whitespace

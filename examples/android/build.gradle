@@ -1,0 +1,61 @@
+buildscript {
+    repositories { google(); mavenCentral(); mavenLocal() }
+    dependencies {
+        classpath "com.android.tools.build:gradle:${project.findProperty('agpVersion') ?: '8.13.2'}"
+        // Matrix tests inject the freshly built JAR; normal use resolves the local Maven publication.
+        if (project.hasProperty('lensPluginJar')) classpath files(project.property('lensPluginJar'))
+        else classpath 'dev.dependencylens:dependency-lens-gradle-plugin:0.1.0'
+    }
+}
+apply plugin: 'dev.dependencylens'
+
+allprojects {
+    repositories { maven { url rootProject.uri('repo') }; google(); mavenCentral() }
+}
+
+ext.oldNamespace = (findProperty('agpVersion') ?: '8.13.2').toString() in ['7.0.0','7.0.4','7.1.3','7.2.2']
+ext.sampleCompileSdk = (findProperty('sampleCompileSdk') ?: '36').toString().toInteger()
+
+subprojects { p ->
+    def pluginId = p.name == 'app' ? 'com.android.application' : p.name == 'feature' ? 'com.android.dynamic-feature' : 'com.android.library'
+    apply plugin: pluginId
+    android {
+        if (!rootProject.ext.oldNamespace) namespace "dev.dependencylens.sample.${p.name}"
+        compileSdkVersion rootProject.ext.sampleCompileSdk
+        if (rootProject.ext.oldNamespace) buildToolsVersion '30.0.3'
+        defaultConfig {
+            minSdkVersion 23
+            targetSdkVersion rootProject.ext.sampleCompileSdk
+            if (p.name == 'app') applicationId 'dev.dependencylens.sample'
+        }
+        if (p.name in ['app','feature']) {
+            flavorDimensions 'edition'
+            productFlavors {
+                free { dimension 'edition' }
+                paid { dimension 'edition' }
+            }
+        }
+        if (p.name == 'app') dynamicFeatures = [':feature']
+    }
+    if (p.name in ['app','feature']) {
+        androidComponents.beforeVariants(androidComponents.selector().withName('paidDebug')) { variant ->
+            if ((rootProject.findProperty('agpVersion') ?: '8.13.2').toString().startsWith('7.0.')) variant.enabled = false
+            else variant.enable = false
+        }
+    }
+}
+
+project(':app') {
+    dependencies {
+        implementation 'lens.fixture:first:1.0'
+        implementation 'lens.fixture:second:1.0'
+        implementation project(':core')
+        implementation project(':network')
+        implementation files('libs/local.jar')
+        compileOnly 'lens.fixture:compile-only:1.0'
+        runtimeOnly 'lens.fixture:runtime-only:1.0'
+    }
+}
+project(':core') { dependencies { api 'lens.fixture:leaf:1.0' } }
+project(':network') { dependencies { api 'lens.fixture:first:1.0' } }
+project(':feature') { dependencies { implementation project(':app') } }

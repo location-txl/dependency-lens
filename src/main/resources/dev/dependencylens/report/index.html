@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; font-src 'none'; base-uri 'none'; form-action 'none'"
+    />
+    <title>依赖分析报告 · Dependency Lens</title>
+    <style>
+      /*__STYLES__*/
+    </style>
+  </head>
+  <body>
+    <header class="report-header">
+      <a class="brand" href="#" aria-label="依赖分析报告首页"
+        ><span data-icon="cube"></span><strong>依赖分析报告</strong></a
+      >
+      <div class="report-meta">
+        <span id="environment"></span><span id="report-date"></span>
+      </div>
+    </header>
+    <div class="app-shell">
+      <aside class="module-sidebar" aria-label="模块导航">
+        <div id="project-name" class="project-name"></div>
+        <nav id="module-nav"></nav>
+        <div class="sidebar-note">
+          Dependency Lens <span id="plugin-version"></span
+          ><small>本地生成 · 离线可用</small>
+        </div>
+      </aside>
+      <main class="workspace">
+        <section class="intro" aria-labelledby="page-title">
+          <h1 id="page-title">依赖浏览器</h1>
+          <p>查看依赖关系与最终解析版本</p>
+          <div class="scope-row">
+            <label
+              >模块<select id="module-select" aria-label="模块"></select
+            ></label>
+            <label
+              >构建变体<select
+                id="variant-select"
+                aria-label="构建变体"
+              ></select
+            ></label>
+            <label class="configuration-label"
+              >配置<select id="scope-select" aria-label="依赖配置"></select
+            ></label>
+            <div id="stats" class="stats" aria-live="polite"></div>
+          </div>
+          <div class="search-row">
+            <div class="search-field">
+              <span data-icon="search"></span
+              ><input
+                id="search"
+                type="search"
+                placeholder="搜索依赖坐标…"
+                aria-label="搜索依赖坐标"
+                autocomplete="off"
+              /><button
+                id="clear-search"
+                class="icon-btn"
+                aria-label="清空搜索"
+                hidden
+              >
+                <span data-icon="x"></span>
+              </button>
+            </div>
+            <label class="toggle-label"
+              ><input type="checkbox" id="changes-only" role="switch" /><span
+                class="toggle-track"
+                aria-hidden="true"
+              ></span
+              >仅看版本变化</label
+            >
+          </div>
+        </section>
+        <div id="issue-banner" class="issue-banner" hidden></div>
+        <div class="browser-area">
+          <section class="dependency-view" aria-label="依赖关系">
+            <div class="view-toolbar">
+              <div class="view-tabs" role="tablist" aria-label="依赖视图">
+                <button
+                  id="tree-tab"
+                  role="tab"
+                  aria-selected="true"
+                  aria-controls="tree-view"
+                >
+                  依赖树</button
+                ><button
+                  id="paths-tab"
+                  role="tab"
+                  aria-selected="false"
+                  aria-controls="paths-view"
+                >
+                  依赖路径
+                </button>
+              </div>
+              <span id="current-dependency"></span>
+            </div>
+            <div
+              id="tree-view"
+              role="tabpanel"
+              aria-labelledby="tree-tab"
+              class="tree-view"
+            ></div>
+            <div
+              id="paths-view"
+              role="tabpanel"
+              aria-labelledby="paths-tab"
+              class="paths-view"
+              hidden
+            ></div>
+          </section>
+          <aside
+            id="dependency-details"
+            class="dependency-details"
+            aria-label="依赖详情"
+          ></aside>
+        </div>
+        <footer class="report-footer">
+          <span id="scope-note"></span><span>不代表 R8 裁剪后的代码留存</span
+          ><button id="about-button">报告信息与许可证</button>
+        </footer>
+      </main>
+    </div>
+    <dialog id="about-dialog">
+      <div class="dialog-title">
+        <h2>关于这份报告</h2>
+        <button id="close-about" class="icon-btn" aria-label="关闭">
+          <span data-icon="x"></span>
+        </button>
+      </div>
+      <div id="about-content"></div>
+    </dialog>
+    <div
+      id="announcement"
+      class="sr-only"
+      role="status"
+      aria-live="polite"
+    ></div>
+    <!--__DATA__-->
+    <!--__LICENSES__-->
+    <!--__SCRIPTS__-->
+  </body>
+</html>
